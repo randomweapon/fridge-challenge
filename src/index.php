@@ -1,6 +1,6 @@
 <?php
 /**
- *
+ * @author Ryan Spencer <ryan@justanotherapp.com>
  */
 
 require 'src/autoload.php';

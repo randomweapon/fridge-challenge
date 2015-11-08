@@ -3,6 +3,7 @@
 /**
  * custom auto loader which does no rely on composer
  * composer autoload is only used for loading in phpunit classes
+ * @author Ryan Spencer <ryan@justanotherapp.com>
  */
 
 spl_autoload_register(

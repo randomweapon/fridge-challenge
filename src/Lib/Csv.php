@@ -1,5 +1,11 @@
 <?php namespace App\Lib;
 
+/**
+ * Class Csv
+ * @package App\Lib
+ * @author Ryan Spencer <ryan@justanotherapp.com>
+ */
+
     class Csv
     {
 

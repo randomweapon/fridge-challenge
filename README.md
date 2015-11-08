@@ -1,4 +1,27 @@
 #Recipe Finder Challenge
+
+## Installing
+
+for running tests insure that composer is run
+
+	composer install
+	
+## Running Application
+
+From the root directory run the following command
+
+	php src/index.php <ingredients CSV> <recipes JSON>
+
+replacng ingredients CSV with the path to the the a CSV file and recipes JSON with the path to the json file
+
+example: 
+
+	php src/index.php ./resources/fridge.csv ./resources/recipes.json
+
+The above example will always return no result as the expiry dates provided are in the past. An example of a working test with valid dates can be found using the following example:
+
+	php src/index.php ./resources/fridge2015.csv ./resources/recipes.json
+
 ## Problem
 Given a list of items in the fridge (presented as a csv list), and a collection of recipes (a collection of JSON formatted recipes), produce a recommendation for what to cook tonight.
 Program should be written to take two inputs; fridge csv list, and the json recipe data. How youchoose to implement this is up to you; you can write a console application which takes input filenames as command line args, or as a web page which takes input through a form.

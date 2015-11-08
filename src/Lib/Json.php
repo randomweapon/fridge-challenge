@@ -1,5 +1,11 @@
 <?php namespace App\Lib;
 
+/**
+ * Class Json
+ * @package App\Lib
+ * @author Ryan Spencer <ryan@justanotherapp.com>
+ */
+
 class Json
 {
 
