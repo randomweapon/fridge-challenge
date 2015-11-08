@@ -1,8 +1,8 @@
 <?php
 
-use App\Lib\Csv;
+use App\Lib\Json;
 
-class CsvTest extends \PHPUnit_Framework_TestCase
+class JsonTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -13,9 +13,9 @@ class CsvTest extends \PHPUnit_Framework_TestCase
         /**
          * we want to test if no file is passed to the class
          */
-        $csv = new Csv();
+        $json = new Json();
 
-        $error = $csv->hasError();
+        $error = $json->hasError();
 
         $this->assertEquals($error["error"], true);
 
@@ -29,9 +29,9 @@ class CsvTest extends \PHPUnit_Framework_TestCase
         /**
          * we want to test if and file is not found
          */
-        $csv = new Csv('invalidfile.csv');
+        $json = new Json('invalidfile.json');
 
-        $error = $csv->hasError();
+        $error = $json->hasError();
 
         $this->assertEquals($error["error"], true);
 
@@ -45,9 +45,9 @@ class CsvTest extends \PHPUnit_Framework_TestCase
         /**
          * we want to make sure an array is returned
          */
-        $csv = new Csv('./resources/fridge.csv');
+        $json = new Json('./resources/recipes.json');
 
-        $this->assertEquals(is_array($csv->get()), true);
+        $this->assertEquals(is_array($json->get()), true);
 
     }
 

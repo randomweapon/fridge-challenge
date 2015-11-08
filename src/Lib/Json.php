@@ -12,7 +12,7 @@ class Json
     private $data = array();
     private $error;
 
-    public function __construct($jsonFile)
+    public function __construct($jsonFile = 'invalidfile')
     {
 
         if ( file_exists($jsonFile) ) {

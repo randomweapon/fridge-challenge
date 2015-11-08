@@ -12,7 +12,7 @@
         private $data = array();
         private $error;
 
-        public function __construct($csvFile)
+        public function __construct($csvFile = "invalidFile")
         {
 
             if ( file_exists($csvFile) ) {
