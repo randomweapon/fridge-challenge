@@ -56,4 +56,9 @@ class Args
         }
     }
 
+    public function count()
+    {
+        return count($this->args);
+    }
+
 }
