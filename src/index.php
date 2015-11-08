@@ -79,6 +79,9 @@ if ( isset($argv) ) {
                             }
 
                         }
+                        else {
+                            $score = -1;
+                        }
 
                     }
 
