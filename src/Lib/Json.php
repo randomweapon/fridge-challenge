@@ -4,42 +4,74 @@ class Json
 {
 
     private $data = array();
+    private $error;
 
     public function __construct($jsonFile)
     {
 
         if ( file_exists($jsonFile) ) {
-            $return = $this->parseJSON($jsonFile);
+            $this->parseJSON($jsonFile);
         }
         else {
-            $return = $this->returnValue(false, "recipes JSON file does not exist");
+            $this->setError("recipes JSON file does not exist");
         }
 
-        return $return;
+        return $this;
 
     }
 
     private function parseJSON($jsonFile)
     {
-        $return = $this->returnValue(true);
-
         $string = file_get_contents($jsonFile);
         $this->data = json_decode($string, true);
 
-        return $return;
+        return $this;
     }
 
-    private function returnValue($valid, $message = "")
+    public function setScore($key, $score)
     {
-        return array(
-            "valid" => $valid,
-            "message" => $message
-        );
+        if ( intval($key) < $this->count() && intval($key) >= 0 ) {
+            $this->data[$key]["score"] = $score;
+        }
     }
 
-    public function get()
+    public function sort($col = "score")
     {
-        return $this->data;
+        usort($this->data, function($a, $b) use ($col) {
+            return $a[$col] - $b[$col];
+        });
+
+        return $this;
+    }
+
+    public function filter($col = "score")
+    {
+        return array_filter($this->data, function($var) use ($col) {
+            return $var[$col] != -1;
+        });
+
+    }
+
+    public function get($pos = null)
+    {
+        if ( ! is_null($pos) ) {
+
+            // make sure value passed in an int
+            $pos = intval($pos);
+
+            // check to see if the position is within the range of values of the array
+            if ( $pos > count($this->data) && $pos >= 0 ) {
+                throw new \Exception("can not find record at position " . $pos);
+            }
+
+            // return value at position
+            return $this->data[$pos];
+        }
+        else {
+
+            // return whole array
+            return $this->data;
+        }
     }
 
     public function count()
@@ -51,6 +83,27 @@ class Json
             return count($this->data);
         }
 
+    }
+
+    public function setError($message)
+    {
+        $this->error = $message;
+    }
+
+    public function hasError()
+    {
+        if ( strlen($this->error) ) {
+            return array(
+                "error" => true,
+                "message" => $this->error
+            );
+        }
+        else {
+            return array(
+                "error" => false,
+                "message" => ""
+            );
+        }
     }
 
 }
