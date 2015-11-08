@@ -31,6 +31,14 @@ class Messages
     }
 
     /**
+     * @return array
+     */
+    public function get()
+    {
+       return $this->message;
+    }
+
+    /**
      * toString will output the current message to a string
      * @return string
      */
